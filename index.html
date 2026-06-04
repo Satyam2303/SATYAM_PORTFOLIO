@@ -22,8 +22,41 @@
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
 <style>
+.home-intro {
+  position: relative;
+  overflow: hidden;
+  background: #050505;
+}
+
 .home-intro .slider-item {
   min-height: 100vh;
+  overflow: hidden;
+}
+
+.home-intro .binary-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 1;
+  mix-blend-mode: normal;
+}
+
+.home-intro .container {
+  position: relative;
+  z-index: 3;
+}
+
+.home-intro .overlay {
+  opacity: 0.18 !important;
+}
+
+.home-intro .text p {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 18px;
+  letter-spacing: 0;
 }
 
 .home-intro .home-profile-img {
@@ -35,6 +68,48 @@
   border-radius: 50%;
   border: 6px solid rgba(255, 189, 57, 0.9);
   padding: 14px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 0 0 10px rgba(255, 189, 57, 0.14), 0 24px 70px rgba(255, 189, 57, 0.22);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.home-intro .image-frame {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-intro .image-frame::before {
+  content: "";
+  position: absolute;
+  inset: -18px;
+  border-radius: 50%;
+  background: conic-gradient(from 90deg, rgba(255, 189, 57, 0), rgba(255, 189, 57, 0.95), rgba(255, 255, 255, 0.65), rgba(255, 189, 57, 0));
+  filter: blur(2px);
+  animation: image-ring-spin 8s linear infinite;
+}
+
+.home-intro .image-frame::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.home-intro .image-frame:hover .home-profile-img {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 0 0 12px rgba(255, 189, 57, 0.2), 0 30px 85px rgba(255, 189, 57, 0.32);
+}
+
+@keyframes image-ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .home-intro .intro-row {
@@ -95,7 +170,7 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav nav ml-auto">
 	          <li class="nav-item"><a href="index.html" class="nav-link"><span>Home</span></a></li>
-	          <li class="nav-item"><a href="resume.html" class="nav-link"><span>Resume</span></a></li>
+	          <li class="nav-item"><a href="resume.html" class="nav-link"><span>Experience</span></a></li>
 	          <li class="nav-item"><a href="projects.html" class="nav-link"><span>Projects</span></a></li>
 	          <li class="nav-item"><a href="contact.html" class="nav-link"><span>Contact</span></a></li>
 	        </ul>
@@ -106,17 +181,20 @@
 		  <div class="home-slider  owl-carousel">
 	       <div class="slider-item ">
 	      	<div class="overlay"></div>
+			<canvas id="binary-bg" class="binary-canvas" aria-hidden="true"></canvas>
 	         <div class="container">
 	          <div class="row intro-row d-md-flex slider-text align-items-center justify-content-between" data-scrollax-parent="true">
 		          <div class="col-md-6 d-flex align-items-center ftco-animate" data-scrollax=" properties: { translateY: '30%' }">
 		          	<div class="text">
+						<p>Thanks for stopping by!</p>
 			            <h1 class="mb-4 mt-3">Hello, I am <span>Satyam Munot</span></h1>
-						<p class="mb-0">Thanks for stopping by!</p>
 
 		            </div>
 		          </div>
 				  <div class="col-md-5 d-flex justify-content-center justify-content-md-end ftco-animate">
-					<img src="images/about-me (2).png" class="home-profile-img" alt="Satyam Munot">
+					<div class="image-frame">
+						<img src="images/about-me (2).png" class="home-profile-img" alt="Satyam Munot">
+					</div>
 				  </div>
 	        	</div>
 	        </div>
@@ -159,6 +237,109 @@
   <script src="js/aos.js"></script>
   <script src="js/jquery.animateNumber.min.js"></script>
   <script src="js/scrollax.min.js"></script>
+  <script>
+	(function () {
+	  const canvas = document.getElementById('binary-bg');
+	  const hero = document.getElementById('home-section');
+
+	  if (!canvas || !hero) {
+		return;
+	  }
+
+	  const ctx = canvas.getContext('2d');
+	  const mouse = { x: -9999, y: -9999, active: false };
+	  let cells = [];
+	  let width = 0;
+	  let height = 0;
+	  let dpr = 1;
+	  const cellSize = 22;
+
+	  function resizeCanvas() {
+		const rect = hero.getBoundingClientRect();
+		dpr = Math.min(window.devicePixelRatio || 1, 2);
+		width = Math.max(rect.width, 1);
+		height = Math.max(rect.height, 1);
+
+		canvas.width = Math.floor(width * dpr);
+		canvas.height = Math.floor(height * dpr);
+		canvas.style.width = `${width}px`;
+		canvas.style.height = `${height}px`;
+		ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+		cells = [];
+		for (let y = -cellSize; y < height + cellSize; y += cellSize) {
+		  for (let x = -cellSize; x < width + cellSize; x += cellSize) {
+			cells.push({
+			  x,
+			  y,
+			  bit: Math.random() > 0.5 ? '1' : '0',
+			  phase: Math.random() * Math.PI * 2,
+			  speed: 0.0008 + Math.random() * 0.0014
+			});
+		  }
+		}
+	  }
+
+	  function updateMouse(event) {
+		const rect = canvas.getBoundingClientRect();
+		mouse.x = event.clientX - rect.left;
+		mouse.y = event.clientY - rect.top;
+		mouse.active = true;
+	  }
+
+	  function render(time) {
+		ctx.clearRect(0, 0, width, height);
+		ctx.font = '700 20px "Poppins", monospace';
+		ctx.textAlign = 'center';
+		ctx.textBaseline = 'middle';
+
+		if (mouse.active) {
+		  const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 190);
+		  gradient.addColorStop(0, 'rgba(255, 189, 57, 0.2)');
+		  gradient.addColorStop(0.35, 'rgba(255, 189, 57, 0.08)');
+		  gradient.addColorStop(1, 'rgba(255, 189, 57, 0)');
+		  ctx.fillStyle = gradient;
+		  ctx.fillRect(0, 0, width, height);
+		}
+
+		for (const cell of cells) {
+		  const dx = cell.x - mouse.x;
+		  const dy = cell.y - mouse.y;
+		  const distance = Math.sqrt(dx * dx + dy * dy);
+		  const hoverPower = mouse.active ? Math.max(0, 1 - distance / 165) : 0;
+		  const shimmer = (Math.sin(time * cell.speed + cell.phase) + 1) * 0.5;
+		  const alpha = 0.24 + shimmer * 0.28 + hoverPower * 0.7;
+
+		  if (hoverPower > 0.28 && Math.random() < hoverPower * 0.12) {
+			cell.bit = cell.bit === '1' ? '0' : '1';
+		  }
+
+		  ctx.fillStyle = hoverPower > 0
+			? `rgba(255, 213, 92, ${Math.min(alpha, 1)})`
+			: `rgba(86, 255, 173, ${Math.min(alpha, 0.72)})`;
+
+		  ctx.shadowColor = 'rgba(255, 189, 57, 0.85)';
+		  ctx.shadowBlur = 4 + hoverPower * 24;
+		  ctx.fillText(cell.bit, cell.x, cell.y + Math.sin(time * 0.001 + cell.phase) * 2);
+		}
+
+		ctx.shadowBlur = 0;
+		requestAnimationFrame(render);
+	  }
+
+	  resizeCanvas();
+	  requestAnimationFrame(render);
+
+	  window.addEventListener('resize', resizeCanvas);
+	  hero.addEventListener('mousemove', updateMouse);
+	  hero.addEventListener('mouseenter', updateMouse);
+	  hero.addEventListener('mouseleave', function () {
+		mouse.active = false;
+		mouse.x = -9999;
+		mouse.y = -9999;
+	  });
+	})();
+  </script>
   
   <script src="js/main.js"></script>
     

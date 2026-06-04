@@ -30,6 +30,38 @@
 //ABOUT//-->  
 <!-- ======================================*/ --> 
 <style>
+.projects-list .project-item {
+  width: 100%;
+}
+
+.projects-list .project-entry {
+  position: relative;
+  margin-bottom: 34px;
+  padding: 0 0 30px 30px;
+  border-left: 2px solid rgba(255, 189, 57, 0.45);
+}
+
+.projects-list .project-entry:before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: -8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffbd39;
+  box-shadow: 0 0 18px rgba(255, 189, 57, 0.55);
+}
+
+.projects-list .project-entry h3 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.projects-list .project-entry p {
+  margin-bottom: 0;
+}
+
 .about-mf .box-shadow-full {
   padding-top: 4rem;
   padding-bottom: 4rem;
@@ -144,7 +176,7 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav nav ml-auto">
 	          <li class="nav-item"><a href="index.html" class="nav-link"><span>Home</span></a></li>
-	          <li class="nav-item"><a href="resume.html" class="nav-link"><span>Resume</span></a></li>
+	          <li class="nav-item"><a href="resume.html" class="nav-link"><span>Experience</span></a></li>
 	          <li class="nav-item"><a href="projects.html" class="nav-link"><span>Projects</span></a></li>
 	          <li class="nav-item"><a href="contact.html" class="nav-link"><span>Contact</span></a></li>
 	        </ul>
@@ -160,70 +192,41 @@
             <p>Below are the sample of projects on MERN, Android.</p>
           </div>
         </div>
-        <div class="row d-flex">
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/Satyam2303/Agrocart" class="block-20 zoom-effect" style="background-image: url('images/proj_1.png');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="https://github.com/Satyam2303/Agrocart">Agrocart: Farmers at Doorstep</a></h3>
-                <p> Designed and implemented a Webpage where the Consumer can buy products Direct from Farmers.</p>
-              </div>
-            </div>
+        <div class="row projects-list">
+          <div class="col-12 project-item ftco-animate">
+          	<div class="project-entry">
+              <h3 class="heading"><a href="https://github.com/Satyam2303/Agrocart">Agrocart: Farmers at Doorstep</a></h3>
+              <p> Designed and implemented a Webpage where the Consumer can buy products Direct from Farmers.</p>
           </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="hhttps://github.com/Satyam2303/Attendance_Recorder" class="block-20 zoom-effect" style="background-image: url('images/proj_2.jpeg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="https://github.com/Satyam2303/Attendance_Recorder">Attendance Recorder for Teachers</a></h3>
-                <p> Designed and implemented Website where Teachers can Increase their efficiency by using its features.</p>
-              </div>
-            </div>
           </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry">
-              <a href="https://github.com/Satyam2303/The_Special_School?tab=readme-ov-file" class="block-20 zoom-effect" style="background-image: url('images/proj_3.jpeg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="https://github.com/Satyam2303/The_Special_School?tab=readme-ov-file">The Special School: Easy Education </a></h3>
-                <p>Worked on Android application for disabled students using Android Studio. The app aimed to enhance their learning experience and accessibility.</p>
-              </div>
-            </div>
+          <div class="col-12 project-item ftco-animate">
+          	<div class="project-entry">
+              <h3 class="heading"><a href="https://github.com/Satyam2303/Attendance_Recorder">Attendance Recorder for Teachers</a></h3>
+              <p> Designed and implemented Website where Teachers can Increase their efficiency by using its features.</p>
           </div>
-        </div>
-	<br>
-		<!-- added justify-content-center to center align the last two projects -->
-		<div class="row d-flex justify-content-center">  
-			<div class="col-md-4 d-flex ftco-animate">
-				<div class="blog-entry justify-content-end">
-				<a href="https://github.com/Satyam2303/Digital-Student-Passport" class="block-20 zoom-effect" style="background-image: url('images/proj_4.png');">
-				</a>
-				<div class="text mt-3 float-right d-block">
-  
+          </div>
+          <div class="col-12 project-item ftco-animate">
+          	<div class="project-entry">
+              <h3 class="heading"><a href="https://github.com/Satyam2303/The_Special_School?tab=readme-ov-file">The Special School: Easy Education </a></h3>
+              <p>Worked on Android application for disabled students using Android Studio. The app aimed to enhance their learning experience and accessibility.</p>
+          </div>
+          </div>
+			<div class="col-12 project-item ftco-animate">
+				<div class="project-entry">
 				  <h3 class="heading"><a href="https://github.com/Satyam2303/Digital-Student-Passport">Digital-Student-Passport</a></h3>
 				  <p> An Android application that contains all the information of
 					the students as well as faculty members in an institute, in a
 					digital format. It uses firebase as backend for storing the
 					data and authentication.</p>
-				</div>
 			  </div>
 			</div>
-			<div class="col-md-4 d-flex ftco-animate">
-				<div class="blog-entry justify-content-end">
-				<a href="https://github.com/Satyam2303/BLOG-SITE" class="block-20 zoom-effect" style="background-image: url('images/proj_5.jpg');">
-				</a>
-				<div class="text mt-3 float-right d-block">
-  
+			<div class="col-12 project-item ftco-animate">
+				<div class="project-entry">
 				  <h3 class="heading"><a href="https://github.com/Satyam2303/BLOG-SITE">BLOG-SITE : Create, Read, Update, Delete</a></h3>
 				  <p>The website allows users to create, read, update, and delete blog posts, facilitating a seamless blogging experience.</p>
-				</div>
 			  </div>
 			</div>
-		 </div>
+		</div>
 	  </div>
     </section>
 

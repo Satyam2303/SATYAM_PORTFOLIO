@@ -30,6 +30,41 @@
 //ABOUT//-->  
 <!-- ======================================*/ --> 
 <style>
+.experience-list .experience-item {
+  width: 100%;
+}
+
+.experience-list .resume-wrap {
+  position: relative;
+  margin-bottom: 38px;
+  padding: 0 0 34px 30px;
+  background: transparent;
+  border-radius: 0;
+  border-left: 2px solid rgba(255, 189, 57, 0.45);
+}
+
+.experience-list .resume-wrap:before {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: -8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffbd39;
+  box-shadow: 0 0 18px rgba(255, 189, 57, 0.55);
+}
+
+.experience-list .resume-wrap .date {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.experience-list .resume-wrap h2 {
+  margin-bottom: 6px;
+}
+
 .about-mf .box-shadow-full {
   padding-top: 4rem;
   padding-bottom: 4rem;
@@ -144,7 +179,7 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav nav ml-auto">
 	          <li class="nav-item"><a href="index.html" class="nav-link"><span>Home</span></a></li>
-	          <li class="nav-item"><a href="resume.html" class="nav-link"><span>Resume</span></a></li>
+	          <li class="nav-item"><a href="resume.html" class="nav-link"><span>Experience</span></a></li>
 	          <li class="nav-item"><a href="projects.html" class="nav-link"><span>Projects</span></a></li>
 	          <li class="nav-item"><a href="contact.html" class="nav-link"><span>Contact</span></a></li>
 	        </ul>
@@ -153,23 +188,14 @@
 	  </nav>
 	  <section class="ftco-section ftco-no-pb" id="resume-section">
     	<div class="container">
-    		<div class="row justify-content-center pb-5">
-          <div class="col-md-10 heading-section text-center ftco-animate">
-          	<h1 class="big big-2">Resume</h1>
-            <h2 class="mb-4">Resume</h2>
-            <!-- <p>Seasoned Senior Data Analyst with 5+ years of experience driving business strategies through data-driven insights. Proven expertise in data science, statistical analysis, machine learning algorithms and project management.</p> -->
-			<p> competitive Programmer with a solid understanding of Data Structures and Algorithms. Passionate about solving complex problem in simplest ways.</p>
-          </div>
-        </div>
-
 		<div class="row">
 			<h1 class="big-4">Experience</h1>
 			<div class="underline"></div>
 		</div>
 		<br>
 		
-			<div class="row">
-				<div class="col-md-6">
+			<div class="row experience-list">
+				<div class="col-12 experience-item">
 					<div class="resume-wrap ftco-animate">
 						<span class="date">June 2025 - Aug 2025</span>
 						<h2>Software Engineer Intern</h2>
@@ -183,7 +209,21 @@
 					</div>
 				</div>
 
-				<div class="col-md-6">
+				<div class="col-12 experience-item">
+					<div class="resume-wrap ftco-animate">
+						<span class="date">Dec 2023 - Sept 2024</span>
+						<h2>Software Full Stack Engineer</h2>
+						<span class="position">Parmah Innovations &amp; Labs, India</span>
+							<ul>
+								<li>Developed AI-powered backend pipelines using Python and OpenAI to extract and integrate complex instrument data directly into the LIMS.</li>
+								<li>Engineered secure C++ backend workflows with role-based access controls and encrypted audit trails to enforce strict application data integrity.</li>
+								<li>Built reliable hybrid cloud and local storage systems to ensure high availability and recovery for production web applications.</li>
+							</ul>
+						</p>
+					</div>
+				</div>
+
+				<div class="col-12 experience-item">
 					<div class="resume-wrap ftco-animate">
 						<span class="date">Dec 2023 - Apr 2024 · 5 Months</span>
 						<h2>Founder	</h2>
@@ -198,7 +238,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-6">
+				<div class="col-12 experience-item">
 					<div class="resume-wrap ftco-animate">
 						<span class="date">Oct 2023 - Mar 2024</span>
 						<h2>Deep Learning Researcher</h2>
@@ -212,7 +252,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-6">
+				<div class="col-12 experience-item">
 					<div class="resume-wrap ftco-animate">
 						<span class="date">Jul 2023 - Oct 2023 · 4 Months</span>
 						<h2> Software Engineer - Accessibility Enhancement for Disabled Students</h2>
@@ -227,7 +267,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-6">
+				<div class="col-12 experience-item">
 					<div class="resume-wrap ftco-animate">
 						<span class="date">Oct 2022 - Mar 2023 · 6 Months</span>
 						<h2>Web Developer</h2>
@@ -241,7 +281,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-6">
+				<div class="col-12 experience-item">
 					<div class="resume-wrap ftco-animate">
 						<span class="date">Sep 2022 - Feb 2023 · 6 Months</span>
 						<h2>Problem Setter</h2>
@@ -255,7 +295,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-6">
+				<div class="col-12 experience-item">
 					<div class="resume-wrap ftco-animate">
 						<span class="date">Oct 2021 - Feb 2022 · 5 Months</span>
 						<h2>Web Developer</h2>
